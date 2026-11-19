@@ -56,7 +56,7 @@ function Before({ t, items, me, go }: { t: Date } & Props) {
           {out && `・${out.code}`}
         </p>
         {(me?.flightOut || me?.flightBack) && (
-          <p className="hero-own">✈️ 你的去程：{me.flightOut || '自行安排'}</p>
+          <p className="hero-own">✈️ 你的去程：{(me.flightOut || '自行安排').split(/\s*／\s*|\s+\/\s+/)[0]}</p>
         )}
       </section>
 

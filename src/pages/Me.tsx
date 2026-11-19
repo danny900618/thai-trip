@@ -59,10 +59,14 @@ export default function Me({ me, data, pick }: Props) {
 
       {me.flightOut || me.flightBack ? (
         <Card title="✈️ 你的班機（自行搭機）">
-          <dl className="kv">
-            <dt>去程</dt><dd>{me.flightOut || '自行安排'}</dd>
-            <dt>回程</dt><dd>{me.flightBack || '自行安排'}</dd>
-          </dl>
+          {[['去程', me.flightOut], ['回程', me.flightBack]].map(([label, text]) => (
+            <div key={label} className="flight">
+              <div className="flight-head"><span className="pill">{label}</span></div>
+              <ol className="legs">
+                {(text || '自行安排').split(/\s*／\s*|\s+\/\s+/).filter(Boolean).map((leg) => <li key={leg}>{leg}</li>)}
+              </ol>
+            </div>
+          ))}
           <p className="tip">
             抵達後直接到住宿 <strong>{HOTELS[0]?.name}</strong> 跟大家會合（{HOTELS[0]?.checkInTime ?? ''}可入住）。
             地址和「給司機看」在「緊急」頁。
