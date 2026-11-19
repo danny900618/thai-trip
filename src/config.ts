@@ -113,7 +113,10 @@ export const WEATHER_PLACES: WeatherPlace[] = [
   },
 ]
 
-// 團內聯絡人（緊急資訊頁顯示）。TODO：補上
-export const CONTACTS: { name: string; role: string; phone: string; line?: string }[] = [
-  { name: '（待補）', role: '總召／行程負責', phone: '+886 900 000 000' },
+// 走散時怎麼辦（緊急資訊頁顯示）
+export const LOST_TIPS: string[] = [
+  '先在 LINE 群組說你在哪裡，用 LINE 傳「位置資訊」最清楚',
+  '不要亂走，留在原地等人來找你',
+  '手機沒電或沒網路：請店員或觀光警察（1155）幫忙',
+  '真的找不到人，就直接回住宿 HAUS109 等（用「給司機看住宿地址」叫車）',
 ]

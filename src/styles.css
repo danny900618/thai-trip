@@ -171,6 +171,8 @@ h1, h2, p { margin: 0; }
 .phone-num { white-space: nowrap; font-weight: 700; color: var(--teal); font-size: 15px; }
 .phones a.urgent { border-color: var(--danger); }
 .phones a.urgent .phone-num { color: var(--danger); font-size: 17px; }
+.steps { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.steps li { padding-left: 2px; }
 .th-addr { font-size: 15px; background: var(--bg); padding: 10px 12px; border-radius: 12px; }
 .phrases { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .phrases li { display: flex; flex-direction: column; background: var(--bg); padding: 10px 12px; border-radius: 12px; }

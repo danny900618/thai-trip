@@ -1,4 +1,4 @@
-import { CONTACTS, HOTELS } from '../config'
+import { HOTELS, LOST_TIPS } from '../config'
 import { Card, DriverButton, HotelInfo } from '../components'
 import { EMERGENCY_THAI, EMERGENCY_TW, type Phone } from '../data/static'
 
@@ -32,8 +32,8 @@ export default function Emergency() {
         <p className="muted small">護照遺失：先到警察局報案拿報案證明，再聯絡辦事處補辦入國證明書。</p>
       </Card>
 
-      <Card title="👥 團內聯絡人">
-        <PhoneList list={CONTACTS.map((c) => ({ name: c.name, desc: c.role, dial: c.phone.replace(/\s/g, ''), display: c.phone }))} />
+      <Card title="👥 走散了怎麼辦">
+        <ol className="steps">{LOST_TIPS.map((t) => <li key={t}>{t}</li>)}</ol>
       </Card>
 
       {HOTELS.map((h) => (
