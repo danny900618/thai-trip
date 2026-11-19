@@ -1,0 +1,11 @@
+{
+  "name": "泰國家族旅行 2027",
+  "short_name": "泰國旅行",
+  "description": "行程、天氣、緊急資訊與個人資料",
+  "lang": "zh-TW",
+  "display": "standalone",
+  "start_url": "./",
+  "theme_color": "#e8772e",
+  "background_color": "#fbf7f2",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

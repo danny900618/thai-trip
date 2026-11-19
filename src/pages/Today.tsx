@@ -67,7 +67,7 @@ function Before({ t, items, me, go }: { t: Date } & Props) {
         </button>
         <button className="todo" onClick={() => go('me')}>
           <span>🛂 入境卡 TDAC</span>
-          <span className="muted">{me ? (me.tdac ? '已完成，點此查看 ›' : '代辦中…') : '開啟我的資料 ›'}</span>
+          <span className="muted">{me ? (me.tdac ? '已完成，點此查看 ›' : '代辦中…') : '選擇你的名字 ›'}</span>
         </button>
         {daysToTrip <= 7 && (
           <p className="tip">出發前一週：確認護照效期、換好泰銖、辦好網路（eSIM／漫遊）。</p>

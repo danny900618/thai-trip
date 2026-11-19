@@ -6,18 +6,24 @@ const fmt = (iso: string, tz: string) =>
   new Date(iso).toLocaleString('zh-TW', { timeZone: tz, month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })
 const tzOf = (iso: string) => (iso.endsWith('+08:00') ? 'Asia/Taipei' : 'Asia/Bangkok')
 
-export default function Me({ me, code, data }: { me?: Member; code: string; data: TripData }) {
-  if (!code) {
-    return (
-      <Card title="👤 我的資料">
-        <p>請使用總召傳給你的<strong>個人專屬連結</strong>開啟，這支手機之後就會記住你。</p>
-      </Card>
-    )
-  }
+type Props = { me?: Member; data: TripData; pick: (code: string) => void }
+
+export default function Me({ me, data, pick }: Props) {
   if (!me) {
     return (
-      <Card title="👤 我的資料">
-        <p>{data.status === 'loading' ? '載入中…' : '找不到你的資料，請確認連結是否正確，或聯絡總召。'}</p>
+      <Card title="👤 你是誰？">
+        <p className="muted small">點自己的名字，這支手機之後就會記住你。</p>
+        {data.members.length ? (
+          <div className="member-grid">
+            {data.members.map((m) => (
+              <button key={m.code} className="member-btn" onClick={() => pick(m.code)}>
+                {m.name}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p>{data.status === 'loading' ? '載入中…' : '目前沒有成員資料，請聯絡總召。'}</p>
+        )}
       </Card>
     )
   }
@@ -27,6 +33,7 @@ export default function Me({ me, code, data }: { me?: Member; code: string; data
       <section className="hero hero-me">
         <p className="hero-kicker">嗨 👋</p>
         <p className="hero-big small">{me.name}</p>
+        <button className="hero-switch" onClick={() => pick('')}>不是你？切換成員</button>
       </section>
 
       <Card title="🛂 泰國入境卡 TDAC" tone="accent">

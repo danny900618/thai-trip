@@ -171,12 +171,18 @@ export function useTripData(): TripData {
 }
 
 /** 個人代碼：網址 ?me=xxx 會記住在這支手機 */
+/** 目前選擇的成員（在「我的」頁點名字選擇，記在這支手機） */
 export function getMyCode(): string {
-  const p = new URLSearchParams(location.search).get('me')
   try {
-    if (p) localStorage.setItem('me', p)
-    return p || localStorage.getItem('me') || ''
+    return localStorage.getItem('me') || ''
   } catch {
-    return p || ''
+    return ''
   }
+}
+
+export function saveMyCode(code: string) {
+  try {
+    if (code) localStorage.setItem('me', code)
+    else localStorage.removeItem('me')
+  } catch { /* 無痕模式等情況忽略 */ }
 }

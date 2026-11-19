@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-import { getMyCode, useTripData } from './lib/sheets'
+import { useEffect, useState } from 'react'
+import { getMyCode, saveMyCode, useTripData } from './lib/sheets'
 import { isSimulated, now } from './lib/time'
 import Today from './pages/Today'
 import Schedule from './pages/Schedule'
@@ -25,8 +25,13 @@ const fromHash = (): Tab => {
 export default function App() {
   const [tab, setTab] = useState<Tab>(fromHash)
   const data = useTripData()
-  const code = useMemo(getMyCode, [])
+  const [code, setCode] = useState(getMyCode)
   const me = data.members.find((m) => m.code === code)
+  const pick = (c: string) => {
+    saveMyCode(c)
+    setCode(c)
+    window.scrollTo(0, 0)
+  }
 
   useEffect(() => {
     const onHash = () => setTab(fromHash())
@@ -47,7 +52,7 @@ export default function App() {
         {tab === 'schedule' && <Schedule data={data} />}
         {tab === 'info' && <Info />}
         {tab === 'sos' && <Emergency />}
-        {tab === 'me' && <Me me={me} code={code} data={data} />}
+        {tab === 'me' && <Me me={me} data={data} pick={pick} />}
       </main>
       <nav className="tabbar">
         {TABS.map((t) => (

@@ -187,6 +187,10 @@ h1, h2, p { margin: 0; }
 .driver-close { color: var(--muted); font-size: 13px; margin-top: 12px; }
 
 /* ── Me ── */
+.member-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.member-btn { border: 0; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 17px; padding: 16px 6px; border-radius: 14px; }
+.member-btn:active { background: var(--accent); color: #fff; }
+.hero-switch { margin-top: 10px; background: rgba(255, 255, 255, 0.2); border: 0; color: #fff; font-size: 13px; padding: 4px 12px; border-radius: 99px; }
 .kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; }
 .kv dt { color: var(--muted); }
 .kv dd { margin: 0; font-weight: 600; }
