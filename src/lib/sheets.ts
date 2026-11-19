@@ -28,6 +28,8 @@ export type Member = {
   roommate: string
   tdac: string
   note: string
+  flightOut: string // 自行搭機者的去程（留空 = 團體班機）
+  flightBack: string
 }
 
 export const TYPE_ICON: Record<ItemType, string> = {
@@ -78,6 +80,7 @@ function toMembers(rows: Record<string, string>[]): Member[] {
     .map((r) => ({
       code: v(r, '代碼'), name: v(r, '姓名'), room: v(r, '房間') || v(r, '房號'),
       roommate: v(r, '同房'), tdac: v(r, '入境卡'), note: v(r, '備註'),
+      flightOut: v(r, '去程'), flightBack: v(r, '回程'),
     }))
     .filter((m) => m.code && m.name)
 }

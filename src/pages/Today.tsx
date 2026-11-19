@@ -55,6 +55,9 @@ function Before({ t, items, me, go }: { t: Date } & Props) {
           {prettyDate(TRIP.startDate)} {new Date(TRIP.departure).toLocaleTimeString('zh-TW', { timeZone: 'Asia/Taipei', hour: '2-digit', minute: '2-digit', hour12: false })} {TRIP.departureLabel}
           {out && `・${out.code}`}
         </p>
+        {(me?.flightOut || me?.flightBack) && (
+          <p className="hero-own">✈️ 你的去程：{me.flightOut || '自行安排'}</p>
+        )}
       </section>
 
       <Card title="✅ 出發前準備">

@@ -1,4 +1,4 @@
-import { FLIGHTS } from '../config'
+import { FLIGHTS, HOTELS } from '../config'
 import { Card } from '../components'
 import type { Member, TripData } from '../lib/sheets'
 
@@ -57,6 +57,19 @@ export default function Me({ me, data, pick }: Props) {
         </Card>
       )}
 
+      {me.flightOut || me.flightBack ? (
+        <Card title="✈️ 你的班機（自行搭機）">
+          <dl className="kv">
+            <dt>去程</dt><dd>{me.flightOut || '自行安排'}</dd>
+            <dt>回程</dt><dd>{me.flightBack || '自行安排'}</dd>
+          </dl>
+          <p className="tip">
+            抵達後直接到住宿 <strong>{HOTELS[0]?.name}</strong> 跟大家會合（{HOTELS[0]?.checkInTime ?? ''}可入住）。
+            地址和「給司機看」在「緊急」頁。
+          </p>
+          <p className="muted small">大家搭的是長榮 BR201，1/18 12:50（泰國時間）抵達曼谷。</p>
+        </Card>
+      ) : (
       <Card title="✈️ 班機">
         {FLIGHTS.map((f) => (
           <div key={f.code} className="flight">
@@ -71,6 +84,7 @@ export default function Me({ me, data, pick }: Props) {
         ))}
         <p className="muted small">時間皆為當地時間</p>
       </Card>
+      )}
 
       {me.note && (
         <Card title="📝 備註">
