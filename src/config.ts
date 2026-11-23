@@ -113,6 +113,13 @@ export const WEATHER_PLACES: WeatherPlace[] = [
   },
 ]
 
+// 自行搭機的團員：抵達曼谷後怎麼跟大家會合（顯示在他們的「我的」頁）
+export const SELF_FLIGHT_MEETUP: string[] = [
+  '大家搭長榮 BR201，1/18 12:50（泰國時間）抵達',
+  '約 14:00 在 4 號門附近集合（AOT 櫃檯正對面），一起搭 Klook 廂型車',
+  '入境、領完行李後先在 LINE 群組報平安',
+]
+
 // 走散時怎麼辦（緊急資訊頁顯示）
 export const LOST_TIPS: string[] = [
   '先在 LINE 群組說你在哪裡，用 LINE 傳「位置資訊」最清楚',

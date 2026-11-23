@@ -1,4 +1,4 @@
-import { FLIGHTS, HOTELS } from '../config'
+import { FLIGHTS, SELF_FLIGHT_MEETUP } from '../config'
 import { Card } from '../components'
 import type { Member, TripData } from '../lib/sheets'
 
@@ -67,11 +67,12 @@ export default function Me({ me, data, pick }: Props) {
               </ol>
             </div>
           ))}
-          <p className="tip">
-            抵達後直接到住宿 <strong>{HOTELS[0]?.name}</strong> 跟大家會合（{HOTELS[0]?.checkInTime ?? ''}可入住）。
-            地址和「給司機看」在「緊急」頁。
-          </p>
-          <p className="muted small">大家搭的是長榮 BR201，1/18 12:50（泰國時間）抵達曼谷。</p>
+          <div className="tip">
+            <p><strong>抵達後請在機場等大家，一起搭接駁車去住宿。</strong></p>
+            <ul className="meetup">
+              {SELF_FLIGHT_MEETUP.map((t) => <li key={t}>{t}</li>)}
+            </ul>
+          </div>
         </Card>
       ) : (
       <Card title="✈️ 班機">
