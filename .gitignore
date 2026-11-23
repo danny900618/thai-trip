@@ -4,3 +4,8 @@ dev-dist
 .DS_Store
 *.local
 *.tsbuildinfo
+
+# 私人檔案（訂單信件等），不要上傳
+bus.txt
+*.eml
+private/

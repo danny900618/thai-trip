@@ -19,6 +19,13 @@ export function Card({ title, right, children, tone }: { title?: ReactNode; righ
   )
 }
 
+/** 把備註裡的電話號碼（+66 開頭等國際格式）變成可直接撥打的連結 */
+function linkPhones(text: string): ReactNode[] {
+  return text.split(/(\+\d[\d\s-]{7,}\d)/).map((part, i) =>
+    i % 2 ? <a key={i} href={`tel:${part.replace(/[\s-]/g, '')}`}>📞 {part}</a> : part,
+  )
+}
+
 export function ItemRow({ item, state }: { item: Item; state?: 'past' | 'now' | 'next' }) {
   return (
     <li className={`item ${state ?? ''}`}>
@@ -35,7 +42,11 @@ export function ItemRow({ item, state }: { item: Item; state?: 'past' | 'now' | 
           {state === 'next' && <span className="pill pill-next">下一個</span>}
         </div>
         {item.place && <div className="item-place">📍 {item.place}</div>}
-        {item.note && <div className="item-note">{item.note}</div>}
+        {item.note && (
+          <div className="item-note">
+            {item.note.split(/\s*／\s*/).map((line, i) => <div key={i}>{linkPhones(line)}</div>)}
+          </div>
+        )}
         {(item.map || item.link) && (
           <div className="item-links">
             {item.map && <a href={item.map} target="_blank" rel="noreferrer">🗺️ 地圖</a>}
